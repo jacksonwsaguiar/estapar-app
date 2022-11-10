@@ -38,20 +38,21 @@ export const Container = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    #list {
+    .list {
       height: 100%;
       grid-template-columns: 1fr;
     }
     .header {
       padding: 0 15px;
+      margin-bottom: 40px;
     }
     .header h1 {
       font-size: 25px;
     }
-    .header button p {
+    .header a p {
       font-size: 18px;
     }
-    .header button i {
+    .header a {
       font-size: 18px;
     }
   }

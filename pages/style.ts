@@ -1,80 +1,5 @@
 import styled from "styled-components";
 
-export const Toolbar = styled.div`
-  overflow: hidden;
-  background-color: #000;
-  height: 12vh;
-  padding: 20px;
-  display: flex;
-  img {
-    width: 300px;
-    margin-right: 50px;
-  }
-
-  a {
-    /* height: 20px; */
-
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    align-self: center;
-    border-bottom: 5px solid #000;
-    padding: 0px 0;
-    margin: 0 15px;
-    transition: 300ms;
-
-    font-family: "Calibri";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 39px;
-  }
-
-  a:hover {
-    opacity: 0.6;
-  }
-
-  a.active {
-    opacity: 1;
-    border-bottom: 5px solid #fff;
-    color: white;
-  }
-
-  .icon {
-    display: none;
-  }
-  button:hover {
-    opacity: 0.5;
-  }
-  button {
-    margin: 0 0 0 auto;
-    align-self: center;
-
-    background: none;
-    width: min-content;
-    height: min-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-
-    font-family: "Calibri";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 39px;
-    cursor: pointer;
-    transition: 300ms;
-  }
-  button img {
-    width: 30px;
-    margin: 0;
-    margin-right: 20px;
-    /* display: none; */
-  }
-`;
 
 export const Container = styled.div`
   display: flex;
@@ -152,6 +77,19 @@ export const Container = styled.div`
     gap: 30px;
     margin-top: 40px;
   }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    & > div {
+      width: 100%;
+      margin: 20px 0;
+    }
+    & > div:nth-child(2) {
+      border: none;
+    }
+
+    
+  }
 `;
 
 export const Content = styled.div`
@@ -185,93 +123,6 @@ export const Content = styled.div`
     }
   }
 
-  .card-emp + .card-emp {
-    margin-top: 15px;
-  }
 
-  .card-emp .info div {
-    display: flex;
-  }
-  .card-emp .info {
-    display: flex;
-    padding: 10px 20px;
-    flex-direction: column;
-    /* justify-content: center; */
-    justify-content: space-between;
-    font-size: 18px;
-  }
-  .card-emp .linev {
-    width: 2px;
-    background: #003169;
-    height: 100%;
-    padding: none;
-  }
-  .card-emp:hover {
- transform: scale(1.05);
-  }
-  .card-emp {
-    transition: 300ms;
-    /* cursor: pointer; */
-    height: 90px;
-    width: 80%;
-    border-radius: 5px;
-    border: 3px solid #003169;
-    display: flex;
-  }
-  .card-emp .img {
-    display: flex;
-    align-items: center;
-    width: auto;
-  }
-  .card-emp .img img {
-    margin: 5px 35px;
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-    object-fit: cover;
-    border: 2px solid #000;
-  }
 
-  @media screen and (max-width: 600px) {
-    .container > div {
-      width: 100%;
-      margin: 20px 0;
-    }
-    .card-emp {
-      width: 90%;
-    }
-    .card-emp .img img {
-      margin: 0 5px;
-    }
-    .container > div:nth-child(2) {
-      border: none;
-    }
-    .container {
-      flex-direction: column;
-    }
-    .toolbar a:not(:first-child) {
-      display: none;
-      display: none;
-    }
-    .toolbar a.icon {
-      float: right;
-      display: block;
-    }
-    .toolbar button {
-      display: none;
-    }
-    .toolbar.responsive {
-      position: relative;
-    }
-    .toolbar.responsive .icon {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .toolbar.responsive a {
-      float: none;
-      display: block;
-      text-align: left;
-    }
-  }
 `;

@@ -9,7 +9,7 @@ export default function Activities() {
         <h1>Colaboradores</h1>
 
         <a>
-          <FiPlus size={30}/>
+          <FiPlus size={20}/>
           <p>Colaborador</p>
         </a>
       </div>
