@@ -17,11 +17,11 @@ export const Card = styled.div`
   }
   .info {
     display: flex;
-    padding: 10px 20px;
     flex-direction: column;
-    /* justify-content: center; */
-    justify-content: space-between;
     font-size: 18px;
+
+    justify-content: space-evenly;
+    margin: auto;
   }
   .linev {
     width: 2px;
@@ -37,14 +37,17 @@ export const Card = styled.div`
     display: flex;
     align-items: center;
     width: auto;
+    width: 40%;
+    justify-content: center;
+    padding: 5px 0;
   }
   .img img {
-    margin: 5px 35px;
     width: 80px;
     height: 80px;
     border-radius: 100%;
     object-fit: cover;
     border: 2px solid #000;
+
   }
 
   @media screen and (max-width: 600px) {

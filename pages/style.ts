@@ -78,7 +78,7 @@ export const Container = styled.div`
     margin-top: 40px;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
     flex-direction: column;
     & > div {
       width: 100%;
