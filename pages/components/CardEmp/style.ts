@@ -13,9 +13,7 @@ export const Card = styled.div`
     display: flex;
     width: 100%;
   }
-  & + & {
-    margin-top: 15px;
-  }
+  margin-top: 15px;
 
   .options {
     display: flex;
