@@ -1,12 +1,16 @@
 import styled from "styled-components";
 
 
+//estilos do componente
+
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
   align-items: center;
   height: 80vh;
+  overflow: hidden;
+  overflow-y: auto;
   > div {
     display: flex;
     align-items: center;

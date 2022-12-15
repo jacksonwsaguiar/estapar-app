@@ -5,12 +5,16 @@ import PieGraph from "../../components/PieGraph";
 import StackedBarChart from "../../components/StackedGraph";
 import { Container } from "./styles";
 
+//função para download da imagem
 function GraphCMSImageLoader({ src, width }: any) {
-  const relativeSrc = (src: any) => src.split("/").pop();
+  // const relativeSrc = (src: any) => src.split("/").pop();
 
   return `https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Henry_Cavill_by_Gage_Skidmore.jpg/${src}`;
 }
-export default function DriverReport() {
+
+//função que retorna o componente de relatorio do motorista, tela que apresenta dados mais detalhados
+export default function DriverReport({...props}) {
+  console.log(props.data);
   return (
     <div>
       <Container>
@@ -24,11 +28,11 @@ export default function DriverReport() {
               loader={GraphCMSImageLoader}
             />
             <h1>
-              Tarcisio Souza
-              <p>#444444</p>
+              {props.data.vallet_name}
+              <p>#{props.data.rfid_code}</p>
             </h1>
 
-            <p>Aqui está os indicadores do mês do manobrista Tarcisio Souza</p>
+            <p>Aqui está os indicadores do mês do manobrista {props.data.vallet_name}</p>
           </div>
         </div>
         <div>
@@ -42,19 +46,19 @@ export default function DriverReport() {
             <div className="graph-captions">
               <div className="item">
                 <div></div>
-                <p>Até 30m</p>
+                <p>Até 5m</p>
               </div>
               <div className="item">
                 <div></div>
-                <p>entre 60m e 90m</p>
+                <p>entre 5m e 15m</p>
               </div>
               <div className="item">
                 <div></div>
-                <p>entre 30m e 60m</p>
+                <p>entre 15m e 25m</p>
               </div>
               <div className="item">
                 <div></div>
-                <p>mais que 90m</p>
+                <p>mais que 25m</p>
               </div>
             </div>
           </div>
@@ -70,5 +74,5 @@ export default function DriverReport() {
         </div>
       </Container>
     </div>
-  );
+  )
 }

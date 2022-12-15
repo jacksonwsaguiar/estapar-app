@@ -2,13 +2,13 @@ import Image from "next/image";
 import { Card } from "./style";
 
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-
 function GraphCMSImageLoader({ src, width }: any) {
+  const relativeSrc = (src: any) => src.split("/").pop();
+
   return `https://cdn-icons-png.flaticon.com/512/149/149071.png`;
 }
 
-//função que renderiza um componente do card do motorista
-export default function CardEmpComponent({ ...props }) {
+export default function CardRowComponent({ ...props }) {
   return (
     <Card>
       <div className="content" onClick={props.onClick}>
@@ -25,15 +25,15 @@ export default function CardEmpComponent({ ...props }) {
         <div className="info">
           <div>
             <b>Motorista:&nbsp;</b>
-            <p>{props.data.vallet_name}</p>
+            <p>João Pedro</p>
           </div>
           <div>
-            <b>ID:&nbsp;</b>
-            <p>{props.data.rfid_code}</p>
+            <b>Estimativa:&nbsp;</b>
+            <p>10</p>
           </div>
           <div>
-            <b>Status:&nbsp;</b>
-            <p>Ativo</p>
+            <b>Prisma:&nbsp;</b>
+            <p>230</p>
           </div>
         </div>
       </div>

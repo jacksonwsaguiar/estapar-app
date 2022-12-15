@@ -1,20 +1,41 @@
 import CardEmpComponent from "../components/CardEmp";
 import { FiPlus } from "react-icons/fi";
 import ModalComponent from "../components/modal";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Container, ModalContainer, DetailsModalContainer } from "./style";
 import Image from "next/image";
+import { useForm } from "react-hook-form";
+import API_VALET from "../api/valet";
 
+//função para download da iamgem do card
 function GraphCMSImageLoader({ src, width }: any) {
-  const relativeSrc = (src: any) => src.split("/").pop();
-
   return `https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Henry_Cavill_by_Gage_Skidmore.jpg/${src}`;
 }
 
+//função que retorna todas a tela de todas as atividades de todos os motoristas
 export default function Activities() {
   const [detailsModalIsOpen, setDetailsModalIsOpen] = useState(false);
   const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
 
+  const [data, setData] = useState([]);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+    API_VALET.get().then((value) => {
+      console.log(value);
+      setData(value.data);
+    });
+  };
   function openModalDetails() {
     setDetailsModalIsOpen(true);
   }
@@ -27,6 +48,15 @@ export default function Activities() {
   function closeModalCreate() {
     setCreateModalIsOpen(false);
   }
+
+  const onSubmit = useCallback(async (data) => {
+    // signIn(data);
+    await API_VALET.create(data).then(() => {
+      closeModalCreate();
+    getData();
+    });
+    // console.log(data);
+  }, []);
   return (
     <>
       <ModalComponent
@@ -37,19 +67,27 @@ export default function Activities() {
           <button className="upload-image">
             <span>adicionar imagem</span>
           </button>
-          <div className="content">
+          <form onSubmit={handleSubmit(onSubmit)} className="content">
             <h2>Adicionar colaborador</h2>
 
             <div>
               <label htmlFor="name">Nome:</label>
-              <input type="text" id="name" />
+              <input
+                type="text"
+                id="name"
+                {...register("vallet_name", { required: true })}
+              />
 
-              <label htmlFor="id">ID:</label>
-              <input type="text" id="id" />
+              <label htmlFor="id">RFID:</label>
+              <input
+                type="text"
+                id="id"
+                {...register("rfid_code", { required: true })}
+              />
             </div>
 
-            <button>confirmar</button>
-          </div>
+            <button type="submit">confirmar</button>
+          </form>
         </ModalContainer>
       </ModalComponent>
       <ModalComponent
@@ -71,7 +109,7 @@ export default function Activities() {
             <div className="info">
               <h2>Estou a caminho!</h2>
               <br />
-              <p>Chegando em 30 minutos</p>
+              <p>Chegando em 10 minutos</p>
 
               <div className="progress">
                 <span className="active"></span>
@@ -82,8 +120,7 @@ export default function Activities() {
 
               <h4>últimas informações:</h4>
 
-              <p>Cliente: Maria Aparecida</p>
-              <p>Placa: XXXX-XXX</p>
+              <p>Prisma: 230</p>
               <p>Horário de saída: 14:50</p>
               <p>Ultima corrida: 24/10/2022 às 14:50</p>
             </div>
@@ -100,13 +137,15 @@ export default function Activities() {
           </a>
         </div>
         <div className="list">
-          {[0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12].map((e) => (
-            // <a href="#"  key={e+"link"}>
+          {data.map((e: any) => (
             <CardEmpComponent
+              data={e}
               key={e}
               onClick={openModalDetails}
               onEdit={openModalCreate}
-              onDelete={() => console.log("delete")}
+              onDelete={() =>
+                API_VALET.delete(e.vallet_id).then(() => getData())
+              }
             />
             // </a>
           ))}

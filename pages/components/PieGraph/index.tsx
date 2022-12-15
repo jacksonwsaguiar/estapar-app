@@ -3,8 +3,10 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import styled from "styled-components";
 
+//registro para utilização do componente de graficos
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+//estilo do grafico
 const Content = styled.div`
   display: flex;
   justify-content: space-between;
@@ -55,6 +57,7 @@ export const data = {
   ],
 };
 
+//componente do grafico
 const PieGraph = () => {
   return (
     <Content>
@@ -64,20 +67,20 @@ const PieGraph = () => {
       <div className="captions">
         <div className="item">
           <span />
-          <h5>Até 30m</h5>
+          <h5>Até 5m</h5>
         </div>
         <div className="item">
           <span />
-          <h5>entre 30m e 60m</h5>
+          <h5>entre 5m e 15m</h5>
         </div>
 
         <div className="item">
           <span />
-          <h5>entre 60m e 90m</h5>
+          <h5>entre 15m e 25m</h5>
         </div>
         <div className="item">
           <span />
-          <h5>mais de 120m</h5>
+          <h5>mais de 25m</h5>
         </div>
       </div>
     </Content>
